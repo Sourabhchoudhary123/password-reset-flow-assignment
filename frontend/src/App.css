@@ -1,0 +1,293 @@
+/* // Register page// */
+body {
+  margin: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.input-cont {
+  margin-top: 6px;
+}
+
+.login-p {
+  color: red;
+  margin-top: 8px;
+}
+
+
+.register {}
+
+.title {
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 2px;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border: rgb(205, 203, 203) solid 5px;
+  box-shadow: 7px 20px 12px #888;
+  padding: 20px;
+  width: 400px;
+  margin-top: 50px;
+  border-radius: 15px;
+
+
+}
+
+
+
+.register-btn {
+
+  padding-left: 105px;
+  padding-right: 105px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 10px;
+  background-color: blue;
+  color: white;
+  border-radius: 4px;
+
+}
+
+.register-btn:hover {
+  color: rgb(255, 255, 255);
+  background-color: green;
+  cursor: pointer;
+
+
+}
+
+.input-field {
+  padding-right: 100px;
+  margin-bottom: 20px;
+  background-color: rgba(233, 232, 232, 0.5);
+  color: rgb(0, 0, 0);
+  border-radius: 2px;
+  width: 282px;
+  height: 33px;
+  border-radius: 12px;
+  background-color: gray;
+  color: white;
+}
+
+.input-titleconfirm {
+  margin-right: 230px;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.input-field::placeholder {}
+
+.input-title {
+  font-family: Arial;
+  padding-right: 290px;
+  margin-top: 100px;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Login Page */
+
+body {
+  margin: 0px;
+  display: flex;
+
+
+}
+
+.login-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 35px;
+}
+
+.input-login {
+  display: block;
+  margin-bottom: 17px;
+  padding-right: 80px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 19px;
+  padding-left: 8px;
+
+}
+
+.login-container {
+  border: 2px solid gray;
+  width: 400px;
+  margin-top: 155px;
+  padding: 50px;
+  box-shadow: 7px 7px 7px rgb(223, 226, 159);
+  border-radius: 35px;
+}
+
+.login-form {
+  display: block;
+}
+
+.login-btn {
+  display: block;
+  margin-top: 7px;
+  padding-right: 100px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding-left: 100px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+
+  cursor: pointer;
+  margin-top: 41px;
+  background-color: green;
+
+  /* //new// */
+  background: #cecece;
+  color: #000;
+  font-weight: 600;
+  border: none;
+
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 16px;
+  border: 2px solid transparent;
+  transition: 0.3s ease;
+
+
+}
+
+.login-btn:hover {
+
+
+  background-color: #ff0000;
+  border-color: #fff;
+  background: rgba(121, 114, 114, 0.15);
+
+}
+
+.link {
+  text-decoration: none;
+}
+
+/* // Forget passowrd// */
+
+body {
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fgt-title {
+  font-family: Arial, Helvetica, sans-serif;
+  color: sienna
+}
+
+.cont {
+  display: inline-block;
+}
+
+.input-fgt {
+  display: block;
+  margin-top: 6px;
+  border-radius: 4px;
+  width: 247px;
+  height: 33px;
+}
+
+.input-fgt:hover {
+  background-color: black;
+  color: white;
+}
+
+.btn-reset {
+  margin-top: 15px;
+  width: 258px;
+  height: 36px;
+  background: red;
+  color: white;
+  border-radius: 25px;
+
+}
+
+.btn-reset:hover {
+  background-color: green;
+  color: white;
+  cursor: pointer;
+}
+
+.container-fgt {
+  border: solid gray 3px;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 276px;
+  width: 400px;
+  height: 300px;
+  border-radius: 40px;
+  /* background-color: rgba(213, 203, 231, 0.5); */
+  box-shadow: 7px 7px 7px 7px rgb(153, 118, 118);
+  /* background-color: #e6e4e4; */
+
+}
+
+/* body{
+  background-color: rgb(150, 149, 223);
+} */
+
+.email-fgt {
+  padding-right: 200px;
+}
+
+.cont-main {
+  margin-top: 30px;
+}
+
+/* // Reset Page // */
+body {
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-reset {
+  border: solid black px;
+  text-align: center;
+  margin: 300px;
+  width: 400px;
+  height: 300px;
+  justify-content: center;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px #ccc;
+
+
+}
+
+.reset-form {}
+
+.input-reset {
+  /* display: inline-block; */
+}
+
+.btn-reset1 {
+  display: flex;
+  margin-left: 147px;
+  margin-top: 16px;
+}
+
+.reset-title {
+  margin-top: 40px;
+  color: blue;
+}
+
+.reset-text {
+  margin-top: 100px;
+}
