@@ -47,7 +47,7 @@ export const login = async (req, res) => {
     );
 
 
-    res.json({ message: "Login Success" });
+    res.json({ message: "Login Success",token });
 
     console.log("JWT_SECRET:", process.env.JWT_SECRET);
 
