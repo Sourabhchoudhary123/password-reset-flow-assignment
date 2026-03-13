@@ -4,6 +4,16 @@ import crypto from "crypto";
 import sendEmail from "../utils/sendEmail.js";
 import jwt from "jsonwebtoken";
 
+export const getUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+
 
 export const register = async (req, res) => {
 
@@ -22,6 +32,8 @@ export const register = async (req, res) => {
     await user.save();
 
     res.json({ message: "User Registered" });
+
+    
 };
 
 export const login = async (req, res) => {
@@ -47,7 +59,7 @@ export const login = async (req, res) => {
     );
 
 
-    res.json({ message: "Login Success",token });
+    res.json({ message: "Login Success", token });
 
     console.log("JWT_SECRET:", process.env.JWT_SECRET);
 
@@ -68,7 +80,7 @@ export const forgotPassword = async (req, res) => {
 
     await user.save();
 
-    const link = `http://localhost:5173/reset-password/${token}`;
+    const link = `${process.env.CLIENT_URL}/reset-password/${token}`;
 
     await sendEmail(email, link);
 
