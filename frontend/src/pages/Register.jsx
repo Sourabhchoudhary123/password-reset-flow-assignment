@@ -97,7 +97,7 @@ function Register() {
 
             <input className="input-field"
               placeholder="Enter name"
-              type="text"
+              type="password"
               onChange={(e) => setconfirmPassword(e.target.value)}
               required
             />
