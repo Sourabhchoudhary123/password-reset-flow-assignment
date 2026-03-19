@@ -11,13 +11,14 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://passwordresetflow0007.netlify.app"
+    "https://melodic-puffpuff-7eae25.netlify.app/",
+    "https://fluffy-cascaron-16423d.netlify.app/"
   ],
   credentials: true
 }));
 
 
-app.use(express.json()); // important
+app.use(express.json()); 
 
 
 app.get("/", (req, res) => {
