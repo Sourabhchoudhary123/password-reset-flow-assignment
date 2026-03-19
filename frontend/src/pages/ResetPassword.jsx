@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 function ResetPassword(){
 
@@ -13,7 +13,7 @@ const handleSubmit = async(e)=>{
 e.preventDefault();
 
 await axios.post(
-`http://localhost:5000/api/auth/reset-password/${token}`,
+`${import.meta.env.VITE_API_URL}/api/auth/login`,
 {password}
 );
 

@@ -1,62 +1,72 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-function Login(){
 
-const [email,setEmail]=useState("");
-const [password,setPassword]=useState("");
+function Login() {
 
-const handleSubmit = async(e)=>{
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-await axios.post(
-"http://localhost:5000/api/auth/login",
-{email,password}
-);
+        try {
+            //use the environment variable for the backend URL
+            const response = await axios.post(
+                    `${import.meta.env.VITE_API_URL}/api/auth/login`,
+                    { email, password }
+                );
 
-alert("Login Successful");
+            // Store the token(if your backend send one)
+            localStorage.setItem("token", response.data.token);
 
-};
+            alert("Login Successful!");
+        } catch (error) {
+            console.error("Login error", error);
+            alert(error.response?.data?.message || "Invalid Credentials");
+        }
+    };
 
-return(
-    <div>
 
-<div className="login-container">
 
-<h2 className="login-title">Login</h2>
-<hr/>
-<br></br><br></br>
 
-<form className="login-form" onSubmit={handleSubmit}>
+    return (
+        <div>
 
-<input
-className="input-login"
-type="email"
-placeholder="Email"
-onChange={(e)=>setEmail(e.target.value)}
-/>
+            <div className="login-container">
 
-<input
-className="input-login"
-type="password"
-placeholder="Password"
-onChange={(e)=>setPassword(e.target.value)}
-/>
+                <h2 className="login-title">Login</h2>
+                <hr />
+                <br></br><br></br>
 
-<a className="link" href="http://localhost:5173/forgot-password">Forget Password?</a>
+                <form className="login-form" onSubmit={handleSubmit}>
 
-<button className="login-btn">Login</button>
+                    <input
+                        className="input-login"
+                        type="email"
+                        placeholder="Email"
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
 
-<p>Not a Member? <a className="link" href="http://localhost:5173/register">Signup</a></p>
+                    <input
+                        className="input-login"
+                        type="password"
+                        placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
 
-</form>
+                    <button className="login-btn" type="submit">Login</button>
 
-</div>
-</div>  
+                    <p>Not a Member? <Link to="/register">Register here</Link></p>
+                    <p><Link to="/forgot-password">Forgot Password</Link></p>
 
-);
+                </form>
 
-}
+            </div>
+        </div>
+
+    );
+}       
 
 export default Login;

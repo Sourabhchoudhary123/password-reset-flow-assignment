@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
 
@@ -7,35 +8,39 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
+  const navigate = useNavigate();
 
-  // const handleSubmit = async (e) => {
-
-  //   e.preventDefault();
-
-  //   await axios.post(
-  //     "http://localhost:5000/api/auth/register",
-  //     { name, email, password, confirmPassword }
-  //   );
-
-  //   alert("User Registered");
-  // };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
+
+    fetch("https://password-reset-flow-assignment-3.onrender.com/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, password })
+    })
 
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
+        { name, email, password }
+      );
 
-    await axios.post(
-      "http://localhost:5000/api/auth/register",
-      { name, email, password }
-    );
-
-    alert("User Registered");
+      alert("User Registered");
+      navigate("/")
+    } catch (error) {
+      console.log(error);
+      alert(error.response?.data?.message || "Something went wrong");
+    }
   };
+
+
 
   return (
     <div>
@@ -55,6 +60,7 @@ function Register() {
               placeholder="Enter name"
               type="text"
               onChange={(e) => setName(e.target.value)}
+              title="enter name"
             />
           </div>
           <br />
@@ -69,6 +75,7 @@ function Register() {
               type="email"
               placeholder="Enter email"
               onChange={(e) => setEmail(e.target.value)}
+              title="enter email"
             />
           </div>
           <br />
@@ -84,6 +91,7 @@ function Register() {
               type="password"
               placeholder="Enter password"
               required
+              title="enter password"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
@@ -100,6 +108,7 @@ function Register() {
               type="password"
               onChange={(e) => setconfirmPassword(e.target.value)}
               required
+              title="enter confirm passowrd"
             />
           </div>
 
@@ -107,7 +116,7 @@ function Register() {
 
           <button className="register-btn">Register</button>
 
-          <p>Already have a account? <a href="http://localhost:5173/login"> Log In</a></p>
+          <p>Already have a account? <Link to="/login">Log In</Link></p>
 
         </form>
 
