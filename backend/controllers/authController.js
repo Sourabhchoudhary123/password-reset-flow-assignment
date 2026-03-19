@@ -19,6 +19,11 @@ export const register = async (req, res) => {
 
     const { names, email, password, confirmPassword } = req.body;
 
+if (names || email || password || confirmPassword) {
+        res.status(200).json({ message: "successfull" })
+    }
+
+
     if (!names || !email || !password || !confirmPassword) {
         res.status(400).json({ message: "All field are mandatory" })
     }
