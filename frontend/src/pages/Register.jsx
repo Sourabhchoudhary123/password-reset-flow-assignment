@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { data, Link, useNavigate } from "react-router-dom";
 
 function Register() {
 
@@ -14,28 +14,19 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    fetch("https://password-reset-flow-assignment-3.onrender.com/api/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, password })
-    })
-
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/register`,
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,data,
         { name, email, password }
       );
 
       alert("User Registered");
       navigate("/")
     } catch (error) {
-      console.log(error);
       alert(error.response?.data?.message || "Something went wrong");
     }
   };

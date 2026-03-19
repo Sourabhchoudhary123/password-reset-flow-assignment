@@ -11,7 +11,7 @@ import authRoutes from "./routes/authRoutes.js";
 const app = express();
 
 app.use(cors({
-  origin:"https://passwordresetflow999.netlify.app/"
+  origin:["https://passwordresetflow0007.netlify.app/"],credentials:true
 }));
 app.use(express.json());
 
