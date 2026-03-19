@@ -6,14 +6,18 @@ dotenv.config();
 import authRoutes from "./routes/authRoutes.js";
 
 
-
-
 const app = express();
 
 app.use(cors({
-  origin:["https://passwordresetflow0007.netlify.app/"],credentials:true
+  origin: [
+    "http://localhost:5173",
+    "https://passwordresetflow0007.netlify.app"
+  ],
+  credentials: true
 }));
-app.use(express.json());
+
+
+app.use(express.json()); // important
 
 
 app.get("/", (req, res) => {

@@ -17,12 +17,20 @@ export const getUsers = async (req, res) => {
 
 export const register = async (req, res) => {
 
-    const { name, email, password, confirmPassword } = req.body;
+    const { names, email, password, confirmPassword } = req.body;
+
+    if (!names || !email || !password || !confirmPassword) {
+        res.status(400).json({ message: "All field are mandatory" })
+    }
+
+    if (password !== confirmPassword) {
+        res.status(400).json({ message: "confirmPassword not matched" })
+    }
 
     const hash = await bcrypt.hash(password, 10);
 
     const user = new User({
-        name,
+        names,
         email,
         password: hash,
         confirmPassword
@@ -33,7 +41,7 @@ export const register = async (req, res) => {
 
     res.json({ message: "User Registered" });
 
-    
+
 };
 
 export const login = async (req, res) => {
@@ -109,30 +117,3 @@ export const resetPassword = async (req, res) => {
 
     res.json({ message: "Password updated" });
 };
-
-export const registers = async (req, res) => {
-
-    const { name, email, password } = req.body;
-
-    const existingUser = await User.findOne({ email });
-
-    if (existingUser) {
-        return res.status(400).json({
-            message: "User already exists"
-        });
-    }
-
-    const user = new User({
-        name,
-        email,
-        password
-    });
-
-    await user.save();
-
-    res.json({
-        message: "User registered successfully",
-
-    });
-
-}

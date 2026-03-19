@@ -1,10 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-import { data, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
 
-  const [name, setName] = useState("");
+  const [names, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
@@ -19,15 +19,15 @@ function Register() {
       return;
     }
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/register`,data,
-        { name, email, password }
+      const calling = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
+        { names, email, password,confirmPassword }
       );
 
       alert("User Registered");
       navigate("/")
     } catch (error) {
-      alert(error.response?.data?.message || "Something went wrong");
+      alert(error.calling?.data?.message || "Something went wrong");
     }
   };
 
