@@ -11,39 +11,41 @@ export const getUsers = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-
-
-
 export const register = async (req, res) => {
-
+  try {
     const { name, email, password, confirmPassword } = req.body;
 
-if (name || email || password || confirmPassword) {
-        res.status(200).json({ message: "successfull" })
-    }
-    if (!name || !email || !password || !confirmPassword) {
-        res.status(400).json({ message: "All field are mandatory" })
-    }
+   
 
     if (password !== confirmPassword) {
-        res.status(400).json({ message: "confirmPassword not matched" })
+      return res.status(400).json({ message: "Passwords do not match" });
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
     }
 
     const hash = await bcrypt.hash(password, 10);
 
     const user = new User({
-        name,
-        email,
-        password: hash,
-        confirmPassword
-
+      name,
+      email,
+      password: hash
     });
 
     await user.save();
 
-    res.json({ message: "User Registered" });
-
-
+    return res.status(201).json({
+      success: true,
+      message: "User registered successfully"
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
 };
 
 export const login = async (req, res) => {
