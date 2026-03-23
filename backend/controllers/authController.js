@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import sendEmail from "../utils/sendEmail.js";
 import jwt from "jsonwebtoken";
-
 export const getUsers = async (req, res) => {
     try {
         const users = await User.find();
@@ -17,14 +16,12 @@ export const getUsers = async (req, res) => {
 
 export const register = async (req, res) => {
 
-    const { names, email, password, confirmPassword } = req.body;
+    const { name, email, password, confirmPassword } = req.body;
 
-if (names || email || password || confirmPassword) {
+if (name || email || password || confirmPassword) {
         res.status(200).json({ message: "successfull" })
     }
-
-
-    if (!names || !email || !password || !confirmPassword) {
+    if (!name || !email || !password || !confirmPassword) {
         res.status(400).json({ message: "All field are mandatory" })
     }
 
@@ -35,7 +32,7 @@ if (names || email || password || confirmPassword) {
     const hash = await bcrypt.hash(password, 10);
 
     const user = new User({
-        names,
+        name,
         email,
         password: hash,
         confirmPassword
