@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ForgotPassword() {
 
@@ -8,19 +8,19 @@ function ForgotPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try{
- await axios.post(
-    `${import.meta.env.VITE_API_URL}/api/auth/forgot-password`,
-      { email }
-    );
     
-    alert("Reset link sent to email");
-    }catch(error){
-      console.log("Error sending reset link",error);
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/forgot-password`,
+        { email }
+      );
+
+      alert("Reset link sent to email");
+    } catch (error) {
+      console.log("Error sending reset link", error);
       alert("Something went wrong.Please try again");
     }
-   
+
 
   };
 
