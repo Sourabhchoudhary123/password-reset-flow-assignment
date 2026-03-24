@@ -1,10 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { data, Link, useNavigate } from "react-router-dom";
 
 function Register() {
 
-  const [names, setName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
@@ -21,8 +21,8 @@ function Register() {
     try {
       const calling = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/register`,
-        { names, email, password,confirmPassword }
-      );
+        { name, email, password,confirmPassword }
+      ,data);
 
       alert("User Registered");
       navigate("/")
@@ -30,7 +30,6 @@ function Register() {
       alert(error.calling?.data?.message || "Something went wrong");
     }
   };
-
 
 
   return (
