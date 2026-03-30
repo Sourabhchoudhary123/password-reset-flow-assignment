@@ -5,19 +5,19 @@ import dotenv from "dotenv";
 dotenv.config();
 import authRoutes from "./routes/authRoutes.js";
 
-
 const app = express();
 
-const corsOptions = {
-  origin: 'https://lighthearted-wisp-156f56.netlify.app',
-  methods:'GET,POST'
-}
-
-app.use(cors(corsOptions));
-
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://lighthearted-wisp-156f56.netlify.app",
+    
+  ],
+  credentials: true
+  // origin: true,
+}));
 
 app.use(express.json());
-
 
 app.get("/", (req, res) => {
   res.send("Password Reset API Running");
@@ -31,5 +31,5 @@ mongoose.connect(process.env.MONGO_URL)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log("Server running on port 5000");
+  console.log(`Server running on port ${PORT}`);
 });
