@@ -1,15 +1,14 @@
+
 import { useState } from "react";
 import axios from "axios";
-import { data, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setconfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,21 +17,20 @@ function Register() {
       alert("Passwords do not match");
       return;
     }
+
     try {
-      const calling = await axios.post(
+      const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/register`,
-        { name, email, password,confirmPassword }
+        { name, email, password, confirmPassword }
       );
-      
 
       alert("User Registered");
-      navigate("/")
+      navigate("/login");
     } catch (error) {
-      alert(error.calling?.data?.message || "Something went wrong");
+      alert(error.response?.data?.message || "Something went wrong");
+      console.log(error);
     }
   };
-
-
   return (
     <div>
       <div className="container">
