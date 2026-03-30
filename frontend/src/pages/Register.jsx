@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,7 +18,7 @@ function Register() {
     }
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/register`,
         { name, email, password, confirmPassword }
       );
@@ -31,6 +30,7 @@ function Register() {
       console.log(error);
     }
   };
+  //jefsidofbsdbf//
   return (
     <div>
       <div className="container">
