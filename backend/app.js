@@ -9,7 +9,7 @@ import authRoutes from "./routes/authRoutes.js";
 const app = express();
 
 const corsOptions = {
-  origin: 'https://steady-klepon-c4eabb.netlify.app',
+  origin: 'https://lighthearted-wisp-156f56.netlify.app',
   methods:'GET,POST'
 }
 
