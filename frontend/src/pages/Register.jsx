@@ -21,16 +21,16 @@ function Register() {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/register`,
-        { name, email, password,ConfirmPassword }
+        { name, email, password, ConfirmPassword }
       );
       console.log(response.data);
-      
+
 
       alert("User Registered");
       navigate("/login")
     } catch (error) {
-     alert(error.response?.data?.message || "Something went wrong");
-     console.log(error);
+      alert(error.response?.data?.message || "Something went wrong");
+      console.log(error);
     }
   };
 
