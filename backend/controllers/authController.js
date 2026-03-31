@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
-    res.json(users);  
+    res.json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -66,33 +66,51 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-  const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ message: "All field are required" });
+    }
 
-  const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email.trim() });
 
-  if (!user) return res.json({ message: "User not found" });
+    if (!user) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
 
-  const match = await bcrypt.compare(password, user.password);
+    const match = await bcrypt.compare(password, user.password);
 
-  if (!match) return res.json({ message: "Wrong Password" });
-
-
-
-
-  // JWT TOKEN
-  const token = jwt.sign(
-    { id: user._id },
-    process.env.JWT_SECRET,
-    { expiresIn: "1h" }
-  );
+    if (!match) {
+      return res.status(400).json({ message: "Password not matched" });
+    }
 
 
+
+
+    // JWT TOKEN
+    const token = jwt.sign(
+      { id: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.status(200).json({
+      message: "Login Success",
+      token
+    });
+  } catch (error) {
+    console.log("Login error", error);
+    res.status(500).json({ message: "Server error" })
+  }
   res.json({ message: "Login Success", token });
 
   console.log("JWT_SECRET:", process.env.JWT_SECRET);
-
 };
+
+
+
+
 
 export const forgotPassword = async (req, res) => {
 
