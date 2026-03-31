@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,14 +15,16 @@ function Login() {
         try {
             //use the environment variable for the backend URL
             const response = await axios.post(
-                    `${import.meta.env.VITE_API_URL}/api/auth/login`,data,
-                    { email, password }
-                );
+                `${import.meta.env.VITE_API_URL}/api/auth/login`,
+                { email:email.trim(),
+                 password:password.trim() 
+                }
+            );
 
             // Store the token(if your backend send one)
             localStorage.setItem("token", response.data.token);
-
-            alert("Login Successful!");
+            alert("Login Successfull!");
+            navigate("/");
         } catch (error) {
             console.error("Login error", error);
             alert(error.response?.data?.message || "Invalid Credentials");
@@ -67,6 +70,6 @@ function Login() {
         </div>
 
     );
-}       
+}
 
 export default Login;
