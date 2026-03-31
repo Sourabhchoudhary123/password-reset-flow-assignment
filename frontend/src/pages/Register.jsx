@@ -3,34 +3,38 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setpassword] = useState("");
+  const [ConfirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
+    if (password !== ConfirmPassword) {
       alert("Passwords do not match");
       return;
     }
-
     try {
-      await axios.post(
+      const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/register`,
-        { name, email, password, confirmPassword }
+        { name, email, password,ConfirmPassword }
       );
+      console.log(response.data);
+      
 
       alert("User Registered");
-      navigate("/login");
+      navigate("/login")
     } catch (error) {
-      alert(error.response?.data?.message || "Something went wrong");
-      console.log(error);
+     alert(error.response?.data?.message || "Something went wrong");
+     console.log(error);
     }
   };
-  //jefsidofbsdbf//
+
+
   return (
     <div>
       <div className="container">
@@ -81,7 +85,7 @@ function Register() {
               placeholder="Enter password"
               required
               title="enter password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setpassword(e.target.value)}
             />
           </div>
 
@@ -95,7 +99,7 @@ function Register() {
             <input className="input-field"
               placeholder="Enter confirm password"
               type="password"
-              onChange={(e) => setconfirmPassword(e.target.value)}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required
               title="enter confirm passowrd"
             />
