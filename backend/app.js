@@ -14,8 +14,7 @@ app.use(cors({
      "https://lively-palmier-7588f9.netlify.app"
     
   ],
-  credentials: true,
-  origin: true,
+  credentials: true
 }));
 
 app.use(express.json());
