@@ -11,10 +11,11 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
      "https://delicate-cucurucho-514b06.netlify.app",
+     "https://lively-palmier-7588f9.netlify.app"
     
   ],
-  credentials: true
-  // origin: true,
+  credentials: true,
+  origin: true,
 }));
 
 app.use(express.json());

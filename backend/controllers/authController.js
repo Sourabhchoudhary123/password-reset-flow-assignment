@@ -13,16 +13,16 @@ export const getUsers = async (req, res) => {
 };
 export const register = async (req, res) => {
   try {
-    const { name, email, password, confirmPassword } = req.body;
+    const { name, email, password, ConfirmPassword } = req.body;
 
-    if (!name || !email || !password || !confirmPassword) {
+    if (!name || !email || !password || !ConfirmPassword) {
       return res.status(400).json({
         success: false,
         message: "All fields are required"
       });
     }
 
-    if (password !== confirmPassword) {
+    if (password !== ConfirmPassword) {
       return res.status(400).json({
         success: false,
         message: "Passwords do not match"
