@@ -103,9 +103,7 @@ export const login = async (req, res) => {
     console.log("Login error", error);
     res.status(500).json({ message: "Server error" })
   }
-  res.status(200).json({ message: "Login Success", token });
-
-  console.log("JWT_SECRET:", process.env.JWT_SECRET);
+  // console.log("JWT_SECRET:", process.env.JWT_SECRET);
 };
 
 
