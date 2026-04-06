@@ -30,10 +30,6 @@ function Login() {
             alert(error.response?.data?.message || "Invalid Credentials");
         }
     };
-
-
-
-
     return (
         <div>
 
