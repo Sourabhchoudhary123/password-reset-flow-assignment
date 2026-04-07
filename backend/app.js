@@ -10,7 +10,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-     "https://dashing-halva-d0815a.netlify.app"
+     "https://silly-phoenix-5ca690.netlify.app"
   ],
   credentials: true
 }));
