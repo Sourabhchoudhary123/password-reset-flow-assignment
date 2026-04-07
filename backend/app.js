@@ -10,7 +10,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-     "https://lustrous-pony-f1db85.netlify.app"
+     "https://storied-pithivier-3c7494.netlify.app"
   ],
   credentials: true
 }));
