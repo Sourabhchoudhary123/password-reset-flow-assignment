@@ -1,29 +1,28 @@
 import nodemailer from "nodemailer";
 
 const sendEmail = async (email, link) => {
-  try {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD
-      }
-    });
+    try {
+        const transporter = nodemailer.createTransport({
+            host: "sandbox.smtp.mailtrap.io",
+            port: 2525,
+            auth: {
+                user: process.env.MAILTRAP_USER,
+                pass: process.env.MAILTRAP_PASS
+            }
+        });
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Password Reset",
-      text: `Click here to reset password: ${link}`
-    });
+        await transporter.sendMail({
+            from: '"Password Reset" <test@mail.com>',
+            to: email,
+            subject: "Password Reset",
+            text: `Click here to reset password: ${link}`
+        });
 
-    console.log("Email sent successfully");
-  } catch (error) {
-    console.log("Send email error", error);
-    throw error;
-  }
+        console.log("Email sent successfully");
+    } catch (error) {
+        console.log("Send email error", error);
+        throw error;
+    }
 };
 
 export default sendEmail;
