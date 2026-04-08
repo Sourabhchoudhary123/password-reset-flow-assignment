@@ -11,14 +11,20 @@ const [password,setPassword] = useState("");
 const handleSubmit = async(e)=>{
 
 e.preventDefault();
+try{
 
-await axios.post(
-`${import.meta.env.VITE_API_URL}/api/auth/login`,
+
+const response = await axios.post(
+`${import.meta.env.VITE_API_URL}/api/auth/reset-password/${token}`,
 {password}
 );
 
-alert("Password Updated");
-
+alert(response.data.message || "Password Updated");
+Navigate("/login");
+}catch(error){
+    res.status(500).json({message:"password not*** Updated"})
+    console.log(response.data.message || "Something went wrong.....")
+}
 };
 
 return(
