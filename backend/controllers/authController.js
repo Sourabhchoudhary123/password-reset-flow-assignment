@@ -99,11 +99,11 @@ export const login = async (req, res) => {
       message: "Login Success",
       token
     });
+    console.log("JWT_SECRET:", process.env.JWT_SECRET);
   } catch (error) {
     console.log("Login error", error);
     res.status(500).json({ message: "Server error" })
   }
-  // console.log("JWT_SECRET:", process.env.JWT_SECRET);
 };
 
 
@@ -112,25 +112,33 @@ export const login = async (req, res) => {
 
 export const forgotPassword = async (req, res) => {
 
-  const { email } = req.body;
+  try {
 
-  const user = await User.findOne({ email });
 
-  if (!user) return res.json({ message: "User not found" });
+    const { email } = req.body;
 
-  const token = crypto.randomBytes(32).toString("hex");
+    const user = await User.findOne({ email });
 
-  user.resetToken = token;
-  user.resetTokenExpire = Date.now() + 600000;
+    if (!user) return res.json({ message: "User not found" });
 
-  await user.save();
+    const token = crypto.randomBytes(32).toString("hex");
 
-  const link = `${process.env.CLIENT_URL}/reset-password/${token}`;
+    user.resetToken = token;
+    user.resetTokenExpire = Date.now() + 600000;
 
-  await sendEmail(email, link);
+    await user.save();
 
-  res.json({ message: "Reset link sent" });
+    const link = `${process.env.CLIENT_URL}/reset-password/${token}`;
+
+    await sendEmail(user.email, link);
+
+    res.status(200).json({ message: "Reset link sent" });
+  } catch (error) {
+    console.log("Forgot password controller error", error);
+    res.status(500).json({ message: "Server error" })
+  }
 };
+
 
 export const resetPassword = async (req, res) => {
 
