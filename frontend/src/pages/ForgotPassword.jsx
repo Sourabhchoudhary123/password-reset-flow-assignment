@@ -8,10 +8,10 @@ function ForgotPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
-      console.log("API URL",import.meta.env.VITE_API_URL);
-      const response =  await axios.post(
+      console.log("API URL", import.meta.env.VITE_API_URL);
+      const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/forgot-password`,
         { email }
       );
