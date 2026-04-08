@@ -24,7 +24,7 @@ export const register = async (req, res) => {
 
     if (password !== ConfirmPassword) {
       return res.status(400).json({
-        success: false,
+        success: false,   
         message: "Passwords do not match"
       });
     }
@@ -143,7 +143,7 @@ export const forgotPassword = async (req, res) => {
 
 
 export const resetPassword = async (req, res) => {
-
+  
   const { token } = req.params;
   const { password } = req.body;
 
