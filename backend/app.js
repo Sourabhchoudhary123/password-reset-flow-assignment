@@ -10,7 +10,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-     "https://lively-boba-3f77b0.netlify.app"
+     "https://rad-cajeta-6843aa.netlify.app"
   ],
   credentials: true
 }));
