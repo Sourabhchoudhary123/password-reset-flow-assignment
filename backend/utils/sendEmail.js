@@ -6,13 +6,13 @@ const sendEmail = async (email, link) => {
             host: "sandbox.smtp.mailtrap.io",
             port: 2525,
             auth: {
-                user: process.env.MAILTRAP_USER,
-                pass: process.env.MAILTRAP_PASS
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASSWORD
             }
         });
 
         await transporter.sendMail({
-            from: '"Password Reset" <test@mail.com>',
+            from: process.env.EMAIL_USER,
             to: email,
             subject: "Password Reset",
             text: `Click here to reset password: ${link}`
